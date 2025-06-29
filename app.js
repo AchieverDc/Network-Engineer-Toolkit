@@ -5,6 +5,7 @@ const defaultJobs = {
 
 let jobs = JSON.parse(localStorage.getItem("jobs")) || defaultJobs;
 let selectedJob = localStorage.getItem("selectedJob") || "";
+let notesByJob = JSON.parse(localStorage.getItem("notesByJob") || "{}");
 
 const jobSelect = document.getElementById("jobSelect");
 const toolList = document.getElementById("toolList");
@@ -15,7 +16,7 @@ const notesTextarea = document.getElementById("notes");
 function saveState() {
   localStorage.setItem("jobs", JSON.stringify(jobs));
   localStorage.setItem("selectedJob", selectedJob);
-  localStorage.setItem("notes", notesTextarea.value);
+  localStorage.setItem("notesByJob", JSON.stringify(notesByJob));
 }
 
 function populateJobs() {
@@ -34,12 +35,11 @@ function renderTools() {
   if (!selectedJob || !jobs[selectedJob]) return;
   jobs[selectedJob].forEach((tool, index) => {
     const li = document.createElement("li");
-    li.className =
-      "flex justify-between items-center border rounded px-3 py-2 bg-gray-50";
+    li.className = "tool-item";
     li.innerHTML = `
-          <span>${tool}</span>
-          <button onclick="removeTool(${index})" class="text-red-500 hover:text-red-700">🗑️</button>
-        `;
+      <span>${tool}</span>
+      <button onclick="removeTool(${index})" class="delete">🗑️</button>
+    `;
     toolList.appendChild(li);
   });
 }
@@ -59,6 +59,7 @@ document.getElementById("addJobBtn").addEventListener("click", () => {
     newJobInput.value = "";
     populateJobs();
     renderTools();
+    notesTextarea.value = notesByJob[selectedJob] || "";
     saveState();
   }
 });
@@ -66,9 +67,11 @@ document.getElementById("addJobBtn").addEventListener("click", () => {
 document.getElementById("deleteJobBtn").addEventListener("click", () => {
   if (selectedJob && jobs[selectedJob]) {
     delete jobs[selectedJob];
+    delete notesByJob[selectedJob];
     selectedJob = "";
     populateJobs();
     renderTools();
+    notesTextarea.value = "";
     saveState();
   }
 });
@@ -85,11 +88,16 @@ document.getElementById("addToolBtn").addEventListener("click", () => {
 
 jobSelect.addEventListener("change", (e) => {
   selectedJob = e.target.value;
+  notesTextarea.value = notesByJob[selectedJob] || "";
   renderTools();
   saveState();
 });
 
-notesTextarea.value = localStorage.getItem("notes") || "";
+notesTextarea.addEventListener("input", () => {
+  if (!selectedJob) return;
+  notesByJob[selectedJob] = notesTextarea.value;
+  saveState();
+});
 
 document.getElementById("fabAddJob").addEventListener("click", () => {
   newJobInput.focus();
@@ -119,6 +127,7 @@ document.getElementById("importInput").addEventListener("change", (event) => {
       selectedJob = Object.keys(imported)[0] || "";
       populateJobs();
       renderTools();
+      notesTextarea.value = notesByJob[selectedJob] || "";
       saveState();
     } catch (err) {
       alert("Invalid JSON");
@@ -151,4 +160,5 @@ if ("serviceWorker" in navigator) {
 // Initialize
 populateJobs();
 renderTools();
+notesTextarea.value = notesByJob[selectedJob] || "";
 updateStatus(navigator.onLine);
