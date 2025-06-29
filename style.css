@@ -207,3 +207,53 @@ button.danger:hover {
   align-items: center;
   justify-content: center;
 }
+
+.fab-menu {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.fab {
+  width: 3.25rem;
+  height: 3.25rem;
+  font-size: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: #0ea5e9;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.fab-options {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.fab-option {
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.25rem;
+  background: #f1f5f9;
+  color: #0f172a;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.fab-option:hover {
+  background: #e2e8f0;
+}
+
+.fab-menu.open .fab-options {
+  display: flex;
+}

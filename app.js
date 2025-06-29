@@ -120,6 +120,25 @@ const newJobInput = document.getElementById("newJobInput");
 const newToolInput = document.getElementById("newToolInput");
 const notesTextarea = document.getElementById("notes");
 
+const fabMain = document.getElementById("fabMain");
+const fabMenu = document.getElementById("fabMenu");
+const fabAddJob = document.getElementById("fabAddJob");
+const fabAddTool = document.getElementById("fabAddTool");
+
+fabMain.addEventListener("click", () => {
+  fabMenu.classList.toggle("open");
+});
+
+fabAddJob.addEventListener("click", () => {
+  newJobInput.focus();
+  fabMenu.classList.remove("open");
+});
+
+fabAddTool.addEventListener("click", () => {
+  newToolInput.focus();
+  fabMenu.classList.remove("open");
+});
+
 function saveState() {
   localStorage.setItem("jobs", JSON.stringify(jobs));
   localStorage.setItem("selectedJob", selectedJob);
