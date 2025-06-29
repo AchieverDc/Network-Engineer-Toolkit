@@ -249,12 +249,12 @@ window.addEventListener("offline", () => updateStatus(false));
 
 function updateStatus(online) {
   const el = document.getElementById("status");
-  el.innerHTML = online
-    ? '<span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>Online'
-    : '<span class="w-2 h-2 rounded-full bg-red-500 mr-2"></span>Offline';
-  el.className = `flex items-center text-sm font-medium ${
-    online ? "text-green-600" : "text-red-600"
-  }`;
+  el.className = "status " + (online ? "online" : "offline");
+  el.innerHTML = `
+    <span style="display:inline-block; width:0.5rem; height:0.5rem; border-radius:9999px; margin-right:0.5rem; background:${
+      online ? "#22c55e" : "#ef4444"
+    };"></span>${online ? "Online" : "Offline"}
+  `;
 }
 
 // Service Worker Registration

@@ -33,6 +33,8 @@ h1 {
 
 .status {
   font-size: 0.875rem;
+  display: flex;
+  align-items: center;
 }
 
 .status.online {
@@ -62,8 +64,37 @@ h1 {
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.5rem;
+}
+
+.row input,
+.row select,
+.row textarea {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.row button {
+  flex: 1 1 calc(50% - 0.25rem);
+  min-width: 48%;
+}
+
+@media (min-width: 640px) {
+  .row {
+    flex-wrap: nowrap;
+  }
+
+  .row input,
+  .row select {
+    flex: 2 1 auto;
+  }
+
+  .row button {
+    flex: 1 1 auto;
+    min-width: auto;
+  }
 }
 
 input,
