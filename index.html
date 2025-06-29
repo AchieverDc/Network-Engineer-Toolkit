@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <title>Network Engineer Toolkit</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1>🔧 Network Engineer Toolkit</h1>
+      <span id="status" class="status online">● Online</span>
+    </header>
+
+    <main class="main">
+      <section class="section">
+        <label for="jobSelect">Select Job Type</label>
+        <select id="jobSelect">
+          <option value="">-- Choose a Job --</option>
+        </select>
+        <div class="row">
+          <input
+            id="newJobInput"
+            type="text"
+            placeholder="Add new job type..."
+          />
+          <button id="addJobBtn">Add</button>
+          <button id="deleteJobBtn" class="danger">Delete</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>🧰 Tool Checklist</h2>
+        <ul id="toolList"></ul>
+        <div class="row">
+          <input id="newToolInput" type="text" placeholder="Add a tool..." />
+          <button id="addToolBtn">Add</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <label for="notes">📝 Job Notes</label>
+        <textarea
+          id="notes"
+          rows="4"
+          placeholder="Enter any important notes..."
+        ></textarea>
+      </section>
+
+      <section class="section">
+        <button id="exportBtn">Export JSON</button>
+        <input type="file" id="importInput" accept="application/json" hidden />
+        <label for="importInput" class="import-label">Import JSON</label>
+      </section>
+    </main>
+
+    <button id="fabAddJob" title="Add Job">+</button>
+  </body>
+</html>
