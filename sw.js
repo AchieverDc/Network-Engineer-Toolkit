@@ -2,6 +2,7 @@ const CACHE_NAME = "network-engineer-toolkit-app-cache-v1";
 const URLS_TO_CACHE = [
   "/",
   "/index.html",
+  "/style.css",
   "/manifest.json",
   "/sw.js",
   "/icon-192.png",
