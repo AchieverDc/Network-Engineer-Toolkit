@@ -1,8 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
   background: #f8f9fa;
   color: #222;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 header {
@@ -36,6 +47,7 @@ h1 {
   padding: 1rem;
   max-width: 700px;
   margin: auto;
+  width: 100%;
 }
 
 .section {
@@ -44,6 +56,8 @@ h1 {
   padding: 1rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .row {
